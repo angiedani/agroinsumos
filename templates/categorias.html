@@ -7,21 +7,26 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 </head>
 <body>
-    <div class="container mt-5">
-        <h1 class="text-center">Categorías de Productos</h1>
+    <section id="productos-destacados">
         <div class="row">
-            {% for categoria in categorias %}
-            <div class="col-md-4">
-                <div class="card mb-4 shadow-sm">
-                    <div class="card-body">
-                        <h5 class="card-title">{{ categoria.nombre }}</h5>
-                        <p class="card-text">{{ categoria.descripcion }}</p>
-                        <a href="{% url 'lista_productos' categoria.id %}" class="btn btn-primary">Ver Productos</a>
+            {% for producto in productos_destacados %}
+                <div class="col-md-4">
+                    <div class="card mb-4 shadow-sm">
+                        {% if producto.imagen %}
+                            <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nomProducto }}">
+                        {% else %}
+                            <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Sin imagen">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ producto.nomProducto }}</h5>
+                            <p class="card-text">{{ producto.descripcion }}</p>
+                            <p class="card-text">Precio: ${{ producto.precioProducto }}</p>
+                            <a href="{% url 'detalle_producto' producto.idProducto %}" class="btn btn-primary">Ver más</a>
+                        </div>
                     </div>
                 </div>
-            </div>
             {% endfor %}
         </div>
-    </div>
+    </section>
 </body>
 </html>

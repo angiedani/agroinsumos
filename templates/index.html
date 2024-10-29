@@ -77,50 +77,52 @@
     
         <!-- Sección Hero -->
         <div class="hero">
-            <h1>Bienvenidos a Insumos Agropecuarios</h1>
+            <h1></h1>
         </div>
     
-       <!-- Contenido adicional -->
-    <div class="content-section">
-        <div class="container">
-            <h2>Productos Destacados</h2>
-            <p>Descubre nuestra amplia gama de productos agropecuarios de alta calidad.</p>
+        <!-- Contenido adicional -->
+        <div class="content-section">
+            <div class="container">
+                <h2>Revisa</h2>
+                <p>Descubre nuestra amplia gama de productos agropecuarios de alta calidad.</p>
+                
+                {% load static %}
+                
+            <section id="productos-destacados">
+                <div class="fila"> 
+                    {% for producto in productos_destacados %}
+                        <div class="col-md-4">
+                            <div class="Tarjeta mb-4 shadow-sm"> 
+                                {% if producto.imagen %}
+                                    <!-- Muestra la imagen del producto si está disponible -->
+                                    <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nomProducto }}">
+                                {% else %}
+                                    <!-- Muestra una imagen de marcador de posición si no hay imagen del producto -->
+                                    <img src="{% static 'images/placeholder.png' %}" class="card-img-top" alt="Sin imagen">
+                                {% endif %}
+                                
+                                <div class="cuerpo-de-la-tarjeta"> 
+                                    <!-- Muestra el nombre del producto -->
+                                    <h5 class="title-tarjeta">{{ producto.nomProducto }}</h5> 
+                                    
+                                    <!-- Muestra la descripción del producto -->
+                                    <p class="card-text">{{ producto.descripcion }}</p>
+                                    
+                                    <!-- Muestra el precio del producto -->
+                                    <p class="card-text">Precio: ${{ producto.precioProducto }}</p>
+                                    
+                                    <!-- Link para ver más detalles del producto -->
+                                    <a href="#" class="btn btn-primary">Ver más</a>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            </section>
+
             
-            <!-- Ejemplo de columnas con Bootstrap -->
-            <div class="row">
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Producto 1">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 1</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Producto 2">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 2</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-4">
-                    <div class="card">
-                        <img src="https://via.placeholder.com/300" class="card-img-top" alt="Producto 3">
-                        <div class="card-body">
-                            <h5 class="card-title">Producto 3</h5>
-                            <p class="card-text">Descripción breve del producto.</p>
-                            <a href="#" class="btn btn-primary">Ver más</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+                 
+            
     
     </body>
     
